@@ -1,6 +1,6 @@
-# FarmPick 실시간 복숭아 시세
+# 피치스코프 실시간 복숭아 시세
 
-aT 경매를 조회하는 Python 서버와 Android Studio에서 가져다 쓸 Java 클라이언트입니다. Java와 Kotlin 프로젝트에서 호출할 수 있습니다. 앱 화면 코드는 팀 프로젝트에서 연결합니다.
+aT 경매를 조회하는 Python 서버와 Android Studio에서 가져다 쓸 Java 클라이언트입니다. Java와 Kotlin 프로젝트에서 호출할 수 있습니다. 피치스코프 Android 프로젝트의 기존 가격 화면 또는 ViewModel에 연결합니다.
 
 ## 서버 실행
 
@@ -61,16 +61,3 @@ if (result.getString("status") == "ok") {
 - 상자 가격은 낙찰 단가를 거래 수량으로 가중평균한 값입니다. kg당 가격은 총 거래금액을 총 중량으로 나눈 값입니다. 같은 시장, 상자 무게, 등급 조건에서 기존 3년치와 비교하세요.
 - `no_trades`이면 가격은 `null`입니다. `lastAuctionAt`은 마지막 낙찰 시각이며 `fetchedAt`은 데이터 조회 시각입니다.
 - aT 인증키를 사용한 실거래 응답과 실제 안드로이드 앱 연결은 팀 환경에서 확인해야 합니다.
-
-## 기존 GitHub 저장소에 올리기
-
-ZIP을 풀고 `farmpick-live-price` 폴더를 기존 저장소의 루트에 넣은 다음, 저장소 루트의 터미널에서 실행합니다. 저장소에 푸시 권한이 필요합니다.
-
-```bash
-git switch -c feature/live-peach-price
-git add farmpick-live-price
-git commit -m "Add live peach auction price integration"
-git push -u origin feature/live-peach-price
-```
-
-GitHub에서 해당 브랜치의 Pull Request를 열면 팀원이 코드, 실행 방법, 연결 예제를 한 번에 확인할 수 있습니다.
