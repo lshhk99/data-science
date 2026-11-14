@@ -1,5 +1,7 @@
 # FarmPick 실시간 복숭아 시세
 
+> 현재 저장소에 이 문서에서 설명하는 Python 서버와 Java 클라이언트 파일은 없습니다. 사용 가능한 Kotlin 예제와 연결 방법은 [복숭아 경매정보 안드로이드 예제](../peach-auction-android/README.md)를 확인하세요.
+
 aT 경매를 조회하는 Python 서버와 Android Studio에서 가져다 쓸 Java 클라이언트입니다. Java와 Kotlin 프로젝트에서 호출할 수 있습니다. 앱 화면 코드는 팀 프로젝트에서 연결합니다.
 
 ## 서버 실행
