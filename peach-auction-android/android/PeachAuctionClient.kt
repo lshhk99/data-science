@@ -11,6 +11,15 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
+/** 사용자에게 보여줄 이름과 공공데이터의 품종 코드를 연결합니다. */
+enum class PeachVariety(val displayName: String, internal val apiCode: String?) {
+    ALL("전체 복숭아", null),
+    WHITE_PEACH("백도", "11"),
+    OTHER("기타", "99");
+
+    override fun toString(): String = displayName
+}
+
 /** 동기 API: 반드시 작업 스레드에서 호출하세요. 인증키는 일반 인증키(Decoding)입니다. */
 class PeachAuctionClient(private val serviceKey: String) {
     data class Auction(
@@ -44,7 +53,7 @@ class PeachAuctionClient(private val serviceKey: String) {
         pageNo: Int = 1,
         rows: Int = 100,
         marketCode: String? = null,
-        varietyCode: String? = null
+        variety: PeachVariety = PeachVariety.ALL
     ): Page {
         require(serviceKey.isNotBlank()) { "공공데이터포털 일반 인증키(Decoding)가 필요합니다." }
         require(pageNo >= 1 && rows in 1..1000) { "페이지는 1 이상, 한 페이지 건수는 1~1000이어야 합니다." }
@@ -62,7 +71,7 @@ class PeachAuctionClient(private val serviceKey: String) {
             "cond[gds_mclsf_cd::EQ]" to "04"
         )
         marketCode?.takeIf { it.isNotBlank() }?.let { params["cond[whsl_mrkt_cd::EQ]"] = it }
-        varietyCode?.takeIf { it.isNotBlank() }?.let { params["cond[gds_sclsf_cd::EQ]"] = it }
+        variety.apiCode?.let { params["cond[gds_sclsf_cd::EQ]"] = it }
         val query = params.entries.joinToString("&") { (key, value) -> "${encode(key)}=${encode(value)}" }
         val connection = URL("https://apis.data.go.kr/B552845/katRealTime2/trades2?$query")
             .openConnection() as HttpURLConnection
