@@ -14,7 +14,11 @@ import java.util.TimeZone
 /** 사용자에게 보여줄 이름과 공공데이터의 품종 코드를 연결합니다. */
 enum class PeachVariety(val displayName: String, internal val apiCode: String?) {
     ALL("전체 복숭아", null),
+    YELLOW_PEACH("황도", "10"),
     WHITE_PEACH("백도", "11"),
+    YUMYEONG("유명", "08"),
+    GYEONGBONG("경봉", "57"),
+    CHEONJUNGDO_WHITE("천중도백도", "21"),
     OTHER("기타", "99");
 
     override fun toString(): String = displayName
